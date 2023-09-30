@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To-Do List</title>
+
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/8517d7124e.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+	<div id="head">
+		<h1>To Do List</h1>
+	</div>
+	<div class="todo">
+		<% if(prev) { %>
+			<div class="outfocus prev">
+				<div class="box" id="heading">
+					<h1><%= listTitlePrev %></h1>
+				</div>
+				<div class="box">
+					<% for(let i=0;i<prevListItems.length;i++) { %>
+						<div class="item">
+							<input type="checkbox">
+							<p><%= prevListItems[i] %></p>
+						</div>
+					<% } %>
+					<form class="item" action="" method="post">
+						<input type="text" name="newItem" placeholder="New Item..." autocomplete="off" required>
+						<button type="submit" name="list">+</button>
+					</form>
+				</div>
+			</div>
+		<% } %>
+		<div id="infocus">
+			<div class="box" id="heading">
+				<h1><%= listTitle %></h1>
+			</div>
+			<div class="box">
+				<% for(let i=0;i<listItems.length;i++) { %>
+					<div class="item">
+						<input type="checkbox">
+						<p><%= listItems[i] %></p>
+					</div>
+				<% } %>
+				<form class="item" action="/" method="post">
+					<input type="text" name="newItem" placeholder="New Item..." autocomplete="off" required>
+					<button type="submit" name="list" value=<%= listName %>>+</button>
+				</form>
+			</div>
+		</div>
+		<% if(next) { %>
+			<div class="outfocus next">
+				<div class="box" id="heading">
+					<h1><%= listTitleNext %></h1>
+				</div>
+				<div class="box">
+					<% for(let i=0;i<nextListItems.length;i++) { %>
+						<div class="item">
+							<input type="checkbox">
+							<p><%= nextListItems[i] %></p>
+						</div>
+					<% } %>
+					<form class="item" action="" method="post">
+						<input type="text" name="newItem" placeholder="New Item..." autocomplete="off" required>
+						<button type="submit" name="list">+</button>
+					</form>
+				</div>
+			</div>
+		<% } %>
+	</div>
+	<div class="arrows">
+		<% if(prev&&next) { %>
+			<button type="button" class="navigate"><a href="/yesterday"><i class="fa-solid fa-arrow-left"></i></a></button>
+			<button type="button" class="navigate"><a href="/tomorrow"><i class="fa-solid fa-arrow-right"></i></a></button>
+		<% } else if(prev) { %>
+			<button type="button" class="navigate"><a href="/"><i class="fa-solid fa-arrow-left"></i></a></button>
+		<% } else if(next) { %>
+			<!-- <button type="button" class="navigate" style="opacity: 0;" disabled="true"><a href=""><i class="fa-solid fa-arrow-left"></i></a></button> -->
+			<button type="button" class="navigate" style="left: 55px;"><a href="/"><i class="fa-solid fa-arrow-right"></i></a></button>
+		<% } %>
+	</div>
+		<!-- <% if(listTitle=='Work') { %>
+			<div class="box footer"><a href="/">Home</a></div>
+		<% } else { %>
+			<div class="box footer"><a href="/work">Work</a></div>
+		<% } %> -->
+    </body>
+</html>
